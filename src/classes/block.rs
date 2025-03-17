@@ -36,4 +36,13 @@ impl Block {
         hasher.update(input);
         format!("{:x}", hasher.finalize())
     }
+
+    pub fn mine_block(&mut self, difficulty: usize) {
+        let target = "0".repeat(difficulty);
+        while &self.hash[..difficulty] != target {
+            self.nonce += 1;
+            self.hash = self.calculate_hash();
+        }
+        println!("Block mined: {}", self.hash);
+    }
 }
