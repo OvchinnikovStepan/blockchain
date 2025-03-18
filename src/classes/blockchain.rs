@@ -1,6 +1,6 @@
 use super::block::Block;
 
-#[derive(Debug)]
+#[derive(Clone,Debug)]
 pub struct Blockchain {
     pub chain: Vec<Block>,
     pub pow_difficulty: usize,
@@ -24,6 +24,10 @@ impl Blockchain {
 
     pub fn to_json(&self) -> String {
         serde_json::to_string_pretty(&self.chain).unwrap()
+    }
+
+    pub fn len(&self) -> usize {
+        self.chain.len()
     }
 
     pub fn is_chain_valid(&self)->bool {
