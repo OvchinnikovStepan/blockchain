@@ -1,7 +1,7 @@
 use super::blockchain::Blockchain;
 use std::net::SocketAddr;
 
-#[derive(Debug)]
+#[derive(Debug,Clone)]
 pub struct Node {
     pub blockchain: Blockchain,
     pub address: SocketAddr,
@@ -27,5 +27,9 @@ impl Node {
         else {
             println!("Node {}: update denyed",self.address)
         }
+    }
+
+    pub fn get_address(&self) -> String {
+        self.address.to_string()
     }
 }
